@@ -1,0 +1,20 @@
+//breakpoints
+$tiny: 480px;
+$small: 768px;
+$tablet: 1024px;
+$medium: 1280px;
+$large: 1441px;
+$m-large: 1850px;
+$x-large: 2560px;
+
+:root {
+  --font-weight-base: 400;
+  --font-family-primary: 'Roboto', sans-serif;
+  --line-height-base: 1.2;
+  --font-size-base: 14px;
+
+  --black: #1A2124;
+  --blue-dark: #2f4c97;
+  --blue-light: #E9F3FF;
+}
+
