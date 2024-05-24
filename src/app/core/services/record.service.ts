@@ -18,7 +18,7 @@ export class RecordService extends ApiService {
             headers: { 'Content-Type': 'application/json' },
             body: { ids }
         };
-        return this.http.delete(this.apiUrl, options);
+        return this.http.delete(`${this.apiUrl}/users`, options);
     }
 
     addRecord(record: RecordModel): Observable<any> {
