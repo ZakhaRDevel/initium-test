@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { RecordModel } from '../core/models/record.model';
 import { RecordService } from '../core/services/record.service';
-import { RecordTableComponent } from '../core/components/record-table/record-table.component';
+import { RecordTableComponent } from '../core/components/block/record-table/record-table.component';
 
 @Component({
     selector: 'app-pages',

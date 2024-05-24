@@ -1,0 +1,5 @@
+<div class="confirm-delete-dialog">
+  <app-modal-layout [title]="'Подтверждение удаления'" [confirmButtonText]="'Удалить'" [confirmAction]="onConfirm.bind(this)" [cancelAction]="onCancel.bind(this)">
+    <p>Вы уверены, что хотите удалить {{ data.count }} {{ data.count === 1 ? 'элемент' : 'элемента' }}?</p>
+  </app-modal-layout>
+</div>
