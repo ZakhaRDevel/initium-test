@@ -60,6 +60,10 @@ export class RecordTableComponent {
     }
 
     onDeleteRecords(): void {
+        if (this.selectedRecords.length === 0) {
+            return;
+        }
+
         const ids = this.selectedRecords.map((record) => record.id);
         this.recordService.deleteRecords(ids).subscribe(() => {
             this.fetchRecords();
