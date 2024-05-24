@@ -4,7 +4,7 @@
     <button mat-icon-button (click)="openCreateUserDialog()">
       <mat-icon>add</mat-icon>
     </button>
-    <button mat-icon-button (click)="onDeleteRecords()">
+    <button mat-icon-button [disabled]="selectedRecords.length < 1" (click)="onDeleteRecords()">
       <mat-icon>delete</mat-icon>
     </button>
   </div>
