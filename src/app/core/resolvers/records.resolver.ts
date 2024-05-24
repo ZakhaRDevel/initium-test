@@ -6,7 +6,7 @@ import { RecordService } from '../services/record.service';
 
 export const recordsResolver: ResolveFn<RecordModel[]> = (route, state) => {
     const recordService = inject(RecordService);
-    return recordService.getRecords().pipe(
+  return recordService.getRecords().pipe(
         take(1),
         mergeMap((data) => {
             return data ? of(data) : EMPTY;

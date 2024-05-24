@@ -8,10 +8,10 @@ import { RecordModel } from '../models/record.model';
     providedIn: 'root'
 })
 export class RecordService extends ApiService {
-    getRecords(filters: any = {}): Observable<RecordModel[]> {
-        const params = new HttpParams({ fromObject: filters });
-        return this.http.get<RecordModel[]>(`${this.apiUrl}/users`, { params });
-    }
+  getRecords(filters: any = {}): Observable<RecordModel[]> {
+    const params = new HttpParams({ fromObject: filters });
+    return this.http.get<RecordModel[]>(`${this.apiUrl}/users`, { params });
+  }
 
     deleteRecords(ids: number[]): Observable<any> {
         const options = {

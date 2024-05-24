@@ -31,6 +31,8 @@ export class RecordTableComponent {
   @Output() deleteRecords = new EventEmitter<RecordModel[]>();
   private recordService = inject(RecordService);
   private dialog = inject(MatDialog);
+  sortBy: string = '';
+  sortOrder: string = '';
   displayedColumns: string[] = [
     'select',
     'name',
@@ -94,8 +96,9 @@ export class RecordTableComponent {
   }
 
   fetchRecords(): void {
-    this.recordService.getRecords().subscribe((records) => {
-      this.records = records;
+    const filters = { sortBy: this.sortBy, order: this.sortOrder };
+    this.recordService.getRecords(filters).subscribe(data => {
+      this.records = data;
       this.selectedRecords = [];
       this.allSelected = false;
     });
@@ -109,5 +112,15 @@ export class RecordTableComponent {
         this.fetchRecords();
       }
     })
+  }
+
+  onSort(column: string): void {
+    if (this.sortBy === column) {
+      this.sortOrder = this.sortOrder === 'asc' ? 'desc' : 'asc';
+    } else {
+      this.sortBy = column;
+      this.sortOrder = 'asc';
+    }
+    this.fetchRecords();
   }
 }
