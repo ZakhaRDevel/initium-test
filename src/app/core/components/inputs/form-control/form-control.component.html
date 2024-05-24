@@ -5,7 +5,7 @@
 
   <div class="errors" *ngIf="errors.length && showErrors">
     <div class="error">
-      {{ errors[0] }}
+      {{ errors[0] | errorReplace }}
     </div>
   </div>
 
