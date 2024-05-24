@@ -74,7 +74,7 @@ export class RecordTableComponent {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result) {
+      if (result?.success) {
         const ids = this.selectedRecords.map(record => record.id);
         this.recordService.deleteRecords(ids).subscribe(() => {
           this.fetchRecords();
@@ -89,8 +89,8 @@ export class RecordTableComponent {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.fetchRecords(); // Перезагружаем данные после редактирования
+      if (result?.success) {
+        this.fetchRecords();
       }
     });
   }
@@ -108,7 +108,8 @@ export class RecordTableComponent {
     const dialogRef = this.dialog.open(CreateUserDialogComponent);
 
     dialogRef.afterClosed().subscribe(result=> {
-      if(result.success) {
+      if (result) {
+        console.log(result);
         this.fetchRecords();
       }
     })
