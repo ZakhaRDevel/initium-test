@@ -1,0 +1,50 @@
+<div class="table-header">
+    <button mat-button (click)="onAddRecord()">Добавить запись</button>
+    <button mat-button (click)="onDeleteRecords()">
+        Удалить выбранные записи
+    </button>
+</div>
+<table mat-table [dataSource]="records" class="mat-elevation-z8">
+    <!-- Checkbox Column -->
+    <ng-container matColumnDef="select">
+        <th mat-header-cell *matHeaderCellDef>
+            <mat-checkbox
+                (change)="toggleAllSelection()"
+                [checked]="allSelected"
+            ></mat-checkbox>
+        </th>
+        <td mat-cell *matCellDef="let record">
+            <mat-checkbox
+                (change)="onToggleSelection(record)"
+                [checked]="selectedRecords.includes(record)"
+            ></mat-checkbox>
+        </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Имя</th>
+        <td mat-cell *matCellDef="let record">{{ record.name }}</td>
+    </ng-container>
+
+    <!-- Surname Column -->
+    <ng-container matColumnDef="surname">
+        <th mat-header-cell *matHeaderCellDef>Фамилия</th>
+        <td mat-cell *matCellDef="let record">{{ record.surname }}</td>
+    </ng-container>
+
+    <!-- Email Column -->
+    <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef>Email</th>
+        <td mat-cell *matCellDef="let record">{{ record.email }}</td>
+    </ng-container>
+
+    <!-- Phone Column -->
+    <ng-container matColumnDef="phone">
+        <th mat-header-cell *matHeaderCellDef>Телефон</th>
+        <td mat-cell *matCellDef="let record">{{ record.phone }}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>
