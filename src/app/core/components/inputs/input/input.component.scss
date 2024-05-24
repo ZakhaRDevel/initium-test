@@ -1,0 +1,51 @@
+@import "variables";
+
+.input {
+  &__wrapper {
+    position: relative;
+
+    .control-input {
+      display: flex;
+      padding: 14px 40px 16px 14px;
+      border-radius: 4px;
+      height: 48px;
+      width: 100%;
+      box-shadow: none;
+      appearance: none;
+      transition: border-color .3s;
+      position: relative;
+      z-index: 1;
+
+      &.disabled {
+        cursor: no-drop;
+      }
+
+      &:-webkit-autofill {
+        & ~ .placeholder {
+          color: transparent;
+        }
+      }
+
+      &:-webkit-autofill:hover,
+      :-webkit-autofill:focus {
+        & ~ .placeholder {
+          color: transparent;
+        }
+      }
+
+      &::placeholder {
+      }
+
+    }
+
+    .label {
+      position: absolute;
+      bottom: calc(100% - 10px);
+      left: 12px;
+      z-index: 2;
+      padding: 0 4px;
+      font-weight: 500;
+    }
+  }
+}
+

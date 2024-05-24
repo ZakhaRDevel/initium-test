@@ -1,0 +1,12 @@
+<div class="form-control">
+  <div class="form-control__content">
+    <ng-content></ng-content>
+  </div>
+
+  <div class="errors" *ngIf="errors.length && showErrors">
+    <div class="error">
+      {{ errors[0] }}
+    </div>
+  </div>
+
+</div>

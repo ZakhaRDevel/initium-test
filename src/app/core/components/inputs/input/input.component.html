@@ -1,0 +1,26 @@
+<div class="input">
+  <app-form-control
+    [control]="control"
+    [withError]="withError"
+    [showErrors]="showError"
+  >
+    <div class="input__wrapper">
+      <input
+        #input
+        [id]="id"
+        class="control-input"
+        [formControl]="control"
+        autocomplete="off"
+        [class.disabled]="disabled"
+        [class.error]="withError || errors.length"
+        [disabled]="disabled"
+        [readonly]="readonly"
+        [placeholder]="placeholder"
+        [type]="type"
+        (change)="onChange()"
+      />
+
+      <label [for]="id" class="label">{{ label }}</label>
+    </div>
+  </app-form-control>
+</div>

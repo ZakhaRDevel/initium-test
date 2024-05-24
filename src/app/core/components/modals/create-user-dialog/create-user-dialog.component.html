@@ -1,0 +1,11 @@
+<div class="create-user-dialog">
+  <app-modal-layout [title]="'Новый клиент'" [confirmButtonText]="'Сохранить'"
+                    [confirmAction]="onConfirm.bind(this)" [cancelAction]="onCancel.bind(this)">
+    <form [formGroup]="formGroup">
+      <app-input [control]="control('name')" />
+      <app-input [control]="control('surname')" />
+      <app-input [control]="control('email')" />
+      <app-input [control]="control('phone')" />
+    </form>
+  </app-modal-layout>
+</div>

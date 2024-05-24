@@ -8,6 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { RecordService } from '../../../services/record.service';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { ConfirmDeleteDialogComponent } from '../../modals/confirm-delete-dialog/confirm-delete-dialog.component';
+import { CreateUserDialogComponent } from '../../modals/create-user-dialog/create-user-dialog.component';
 
 @Component({
   selector: 'app-record-table',
@@ -58,10 +59,6 @@ export class RecordTableComponent {
     this.allSelected = this.selectedRecords.length === this.records.length;
   }
 
-  onAddRecord(): void {
-    this.addRecord.emit();
-  }
-
 
   onDeleteRecords(): void {
     if (this.selectedRecords.length === 0) {
@@ -92,5 +89,15 @@ export class RecordTableComponent {
       this.selectedRecords = [];
       this.allSelected = false;
     });
+  }
+
+  openCreateUserDialog() {
+    const dialogRef = this.dialog.open(CreateUserDialogComponent);
+
+    dialogRef.afterClosed().subscribe(result=> {
+      if(result.success) {
+        this.fetchRecords();
+      }
+    })
   }
 }
