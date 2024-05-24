@@ -25,7 +25,7 @@ export class RecordService extends ApiService {
         return this.http.post(`${this.apiUrl}/users`, record);
     }
 
-    updateRecord(record: RecordModel): Observable<any> {
-        return this.http.put(this.apiUrl, record);
-    }
+  updateRecord(record: RecordModel): Observable<any> {
+    return this.http.put(`${this.apiUrl}/users/${record.id}`, record);
+  }
 }

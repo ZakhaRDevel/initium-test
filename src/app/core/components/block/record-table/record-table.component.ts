@@ -9,6 +9,7 @@ import { RecordService } from '../../../services/record.service';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { ConfirmDeleteDialogComponent } from '../../modals/confirm-delete-dialog/confirm-delete-dialog.component';
 import { CreateUserDialogComponent } from '../../modals/create-user-dialog/create-user-dialog.component';
+import { EditUserDialogComponent } from '../../modals/edit-user-dialog/edit-user-dialog.component';
 
 @Component({
   selector: 'app-record-table',
@@ -80,7 +81,16 @@ export class RecordTableComponent {
     });
   }
 
-  editRecord(record: RecordModel): void {
+  onEditRecord(record: RecordModel): void {
+    const dialogRef = this.dialog.open(EditUserDialogComponent, {
+      data: record
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.fetchRecords(); // Перезагружаем данные после редактирования
+      }
+    });
   }
 
   fetchRecords(): void {

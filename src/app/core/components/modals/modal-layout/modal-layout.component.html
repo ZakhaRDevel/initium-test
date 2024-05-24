@@ -10,7 +10,7 @@
   <div class="modal-layout__actions">
     <mat-dialog-actions align="end">
       <button mat-button (click)="onCancel()">Отмена</button>
-      <button mat-button color="primary" (click)="onConfirm()">{{ confirmButtonText }}</button>
+      <button mat-button color="primary" (click)="onConfirm()" [disabled]="!isFormValid">{{ confirmButtonText }}</button>
     </mat-dialog-actions>
   </div>
 </div>
