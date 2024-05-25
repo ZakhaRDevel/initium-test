@@ -4,13 +4,14 @@ import { ActivatedRoute } from '@angular/router';
 import { RecordModel } from '../core/models/record.model';
 import { RecordService } from '../core/services/record.service';
 import { RecordTableComponent } from '../core/components/block/record-table/record-table.component';
+import { IconComponent } from '../core/components/ui/icon/icon.component';
 
 @Component({
     selector: 'app-pages',
     standalone: true,
     templateUrl: './pages.component.html',
     styleUrls: ['./pages.component.scss'],
-    imports: [CommonModule, RecordTableComponent]
+  imports: [CommonModule, RecordTableComponent, IconComponent]
 })
 export class PagesComponent implements OnInit {
     private recordService = inject(RecordService);

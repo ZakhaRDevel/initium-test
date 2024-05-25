@@ -1,0 +1,83 @@
+@import "variables";
+
+._btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: max-content;
+  height: max-content;
+  transition: background-color .3s, color .3s;
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+
+  &.default {
+    padding: 16px 22px;
+    border-radius: 37px;
+    font-size: 18px;
+    line-height: 22px;
+
+    &.blue {
+      color: #fff;
+      background-color: #2F67D5;
+
+      @media (hover: hover) {
+        &:hover {
+          background-color: #3C7CF8;
+        }
+      }
+
+      &:active {
+        background-color: #194EB6;
+      }
+
+      &:disabled {
+        background-color: #D8DEE9;
+      }
+    }
+
+    &.transparent {
+      color: #2F67D5;
+
+      @media (hover: hover) {
+        &:hover {
+          background-color: rgba(60, 124, 248, 0.1);
+        }
+      }
+
+      &:active {
+        background-color: rgba(25, 78, 182, 0.2);
+      }
+
+      &:disabled {
+        background-color: #D8DEE9;
+      }
+    }
+  }
+
+  &.icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+
+    &.transparent {
+      color: #304879;
+
+      @media (hover: hover) {
+        &:hover {
+          background-color: #E2EEFF;
+        }
+      }
+
+      &:active {
+        background-color: #B5D3FF;
+      }
+
+      &:disabled {
+        color: #A8B0BF;
+        background-color: transparent;
+      }
+    }
+  }
+}
