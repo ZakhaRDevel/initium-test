@@ -1,0 +1,17 @@
+.records {
+  display: flex;
+  flex-direction: column;
+  padding: 31px 16px 16px;
+  max-height: 100dvh;
+  overflow: hidden;
+
+  &__title {
+    margin-bottom: 26px;
+
+    color: #2F7FD5;
+    font-size: 28px;
+    line-height: 33px;
+    letter-spacing: 0.15px;
+    font-weight: 500;
+  }
+}
