@@ -8,7 +8,6 @@
   max-height: 100%;
   background-color: #fff;
   border-radius: 20px;
-  box-shadow: rgba(149, 157, 165, 0.2) 0 8px 24px;
 
 
   &__header {
@@ -75,6 +74,14 @@
       overflow-x: hidden;
       width: 100%;
       @include customScrollGray();
+
+      .table-row{
+        @media (hover:hover) {
+          &:hover{
+            background-color: #f6f9ff;
+          }
+        }
+      }
     }
 
     &-row {
