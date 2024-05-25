@@ -19,6 +19,13 @@ import { phoneValidator } from '../../../validators/phone.validator';
 export class CreateUserDialogComponent extends Form {
   private dialogRef = inject(MatDialogRef<CreateUserDialogComponent>);
   private fb = inject(FormBuilder);
+  formGroup: FormGroup = this.fb.group({
+    id: [this.generateUniqueId()],
+    name: ['', [Validators.required, Validators.min(2)]],
+    surname: ['', [Validators.required, Validators.min(2)]],
+    email: ['', [Validators.required, Validators.email]],
+    phone: ['', [phoneValidator()]]
+  });
   private recordService = inject(RecordService);
 
   onConfirm(): void {
@@ -28,14 +35,6 @@ export class CreateUserDialogComponent extends Form {
   onCancel(): void {
     this.dialogRef.close();
   }
-
-  formGroup: FormGroup = this.fb.group({
-    id: [this.generateUniqueId()],
-    name: ['', [Validators.required, Validators.min(2)]],
-    surname: ['', [Validators.required, Validators.min(2)]],
-    email: ['', [Validators.required, Validators.email]],
-    phone: ['', [phoneValidator()]]
-  });
 
   prepareRequest(): Observable<any> {
     const data = this.formGroup.getRawValue();

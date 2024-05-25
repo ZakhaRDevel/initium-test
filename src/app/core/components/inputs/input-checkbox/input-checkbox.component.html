@@ -1,13 +1,13 @@
 <div class="input-checkbox">
   <app-form-control
     [control]="control"
-    [withError]="withError"
     [showErrors]="showError"
+    [withError]="withError"
   >
-    <div class="custom-checkbox" [class.unchecked]="state === 'unchecked'"
-         [class.checked]="state === 'checked'"
+    <div (click)="onClick($event)" [class.checked]="state === 'checked'"
          [class.indeterminate]="state === 'indeterminate'"
-         (click)="onClick($event)">
+         [class.unchecked]="state === 'unchecked'"
+         class="custom-checkbox">
     </div>
   </app-form-control>
 </div>

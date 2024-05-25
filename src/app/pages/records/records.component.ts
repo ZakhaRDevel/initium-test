@@ -13,9 +13,9 @@ import { InputCheckboxComponent } from '../../core/components/inputs/input-check
   templateUrl: './records.component.html',
   styleUrls: ['./records.component.scss']
 })
-export class RecordsComponent implements OnInit{
-  private route = inject(ActivatedRoute);
+export class RecordsComponent implements OnInit {
   records: RecordModel[] = [];
+  private route = inject(ActivatedRoute);
 
   ngOnInit(): void {
     this.route.data.subscribe(({ records }) => {

@@ -18,10 +18,10 @@ import { RecordModel } from '../../../models/record.model';
   styleUrls: ['./edit-user-dialog.component.scss']
 })
 export class EditUserDialogComponent extends Form {
+  formGroup: FormGroup;
   private dialogRef = inject(MatDialogRef<EditUserDialogComponent>);
   private fb = inject(FormBuilder);
   private recordService = inject(RecordService);
-  formGroup: FormGroup;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public record: RecordModel

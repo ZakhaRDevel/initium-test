@@ -1,15 +1,15 @@
 <div class="record-table">
   <div class="record-table__header">
     <button
-      class="_btn icon transparent"
       (click)="openCreateUserDialog()"
+      class="_btn icon transparent"
     >
       <app-icon src="assets/img/icons/add.svg"></app-icon>
     </button>
     <button
-      class="_btn icon transparent"
-      [disabled]="selectedRecords.length < 1"
       (click)="onDeleteRecords()"
+      [disabled]="selectedRecords.length < 1"
+      class="_btn icon transparent"
     >
       <app-icon src="assets/img/icons/delete.svg"></app-icon>
     </button>
@@ -19,27 +19,27 @@
       <div class="table-row">
         <div class="table-cell">
           <app-input-checkbox
-            [state]="getHeaderCheckboxState()"
             (stateChange)="toggleAllSelection()"
+            [state]="getHeaderCheckboxState()"
           ></app-input-checkbox>
         </div>
         <button
-          *ngFor="let column of columns"
-          class="table-cell"
-          [ngClass]="{ 'end': column?.align === 'end' }"
           (click)="onSort(column.field)"
+          *ngFor="let column of columns"
+          [ngClass]="{ 'end': column?.align === 'end' }"
+          class="table-cell"
         >
           {{ column.label }}
           <div class="table-cell__triangles">
             <div
-              class="top"
               [class.active]="sortBy === column.field && sortOrder === 'desc'"
+              class="top"
             >
               <app-icon src="assets/img/icons/triangle.svg"></app-icon>
             </div>
             <div
-              class="bottom"
               [class.active]="sortBy === column.field && sortOrder === 'asc'"
+              class="bottom"
             >
               <app-icon src="assets/img/icons/triangle.svg"></app-icon>
             </div>
@@ -49,17 +49,17 @@
     </div>
     <div class="table-tbody">
       <div
-        class="table-row"
         *ngFor="let record of records"
         [class.selected]="selectedRecords.includes(record)"
+        class="table-row"
       >
         <div class="table-cell">
           <app-input-checkbox
-            [state]="selectedRecords.includes(record) ? 'checked' : 'unchecked'"
             (stateChange)="onToggleSelection(record)"
+            [state]="selectedRecords.includes(record) ? 'checked' : 'unchecked'"
           ></app-input-checkbox>
         </div>
-        <button class="table-cell btn" (click)="onEditRecord(record)">{{ record.name }}</button>
+        <button (click)="onEditRecord(record)" class="table-cell btn">{{ record.name }}</button>
         <div class="table-cell">{{ record.surname }}</div>
         <div class="table-cell end">{{ record.email }}</div>
         <div class="table-cell end">{{ record.phone }}</div>

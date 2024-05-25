@@ -10,10 +10,9 @@ import { SvgService } from '../../../services/svg.service';
   encapsulation: ViewEncapsulation.None
 })
 export class IconComponent implements OnInit {
-  private svgService = inject(SvgService);
   @Input() src: string;
   svgIcon: SafeHtml;
-
+  private svgService = inject(SvgService);
 
   ngOnInit() {
     this.svgService.getSvg(this.src).subscribe(svg => {

@@ -1,25 +1,25 @@
 <div class="input">
   <app-form-control
     [control]="control"
-    [withError]="withError"
     [showErrors]="showError"
+    [withError]="withError"
   >
-    <div class="input__wrapper error"
-         [class.focused]="inputFocus"
+    <div [class.error]="withError || errors.length"
          [class.filled]="!inputFocus && !!control.value"
-         [class.error]="withError || errors.length"
+         [class.focused]="inputFocus"
+         class="input__wrapper error"
     >
       <input
         #input
-        class="control-input"
-        [formControl]="control"
-        autocomplete="off"
+        (blur)="onBlur()"
+        (focus)="onFocus()"
         [class.disabled]="disabled"
         [disabled]="disabled"
+        [formControl]="control"
         [readonly]="readonly"
         [type]="type"
-        (focus)="onFocus()"
-        (blur)="onBlur()"
+        autocomplete="off"
+        class="control-input"
       />
       <label class="label">{{ label }}</label>
     </div>

@@ -8,7 +8,7 @@
     </mat-dialog-content>
   </div>
   <div class="modal-layout__actions">
-    <button class="_btn default transparent" (click)="onCancel()">Отмена</button>
-    <button class="_btn default blue" (click)="onConfirm()" [disabled]="!isFormValid">{{ confirmButtonText }}</button>
+    <button (click)="onCancel()" class="_btn default transparent">Отмена</button>
+    <button (click)="onConfirm()" [disabled]="!isFormValid" class="_btn default blue">{{ confirmButtonText }}</button>
   </div>
 </div>

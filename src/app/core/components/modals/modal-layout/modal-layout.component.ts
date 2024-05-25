@@ -14,9 +14,13 @@ import { MatDialogModule } from '@angular/material/dialog';
 export class ModalLayoutComponent {
   @Input() title: string = '';
   @Input() confirmButtonText: string = 'OK';
-  @Input() confirmAction: () => void = () => {};
-  @Input() cancelAction: () => void = () => {};
   @Input() isFormValid: boolean = true;
+
+  @Input() confirmAction: () => void = () => {
+  };
+
+  @Input() cancelAction: () => void = () => {
+  };
 
   onCancel(): void {
     this.cancelAction();

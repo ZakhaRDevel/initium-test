@@ -1,4 +1,4 @@
-import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RecordModel } from '../../../models/record.model';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
@@ -29,19 +29,18 @@ interface Column {
 })
 export class RecordTableComponent {
   @Input() records: RecordModel[] = [];
-  private recordService = inject(RecordService);
-  private dialog = inject(MatDialog);
   sortBy: string = '';
   sortOrder: string = '';
   selectedRecords: RecordModel[] = [];
   allSelected: boolean = false;
-
   columns: Column[] = [
     { field: 'name', label: 'Имя' },
     { field: 'surname', label: 'Фамилия' },
     { field: 'email', label: 'E-mail', align: 'end' },
     { field: 'phone', label: 'Телефон', align: 'end' }
   ];
+  private recordService = inject(RecordService);
+  private dialog = inject(MatDialog);
 
   getHeaderCheckboxState(): 'unchecked' | 'checked' | 'indeterminate' {
     if (this.allSelected) {

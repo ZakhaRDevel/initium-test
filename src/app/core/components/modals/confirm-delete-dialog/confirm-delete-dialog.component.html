@@ -1,6 +1,6 @@
 <div class="confirm-delete-dialog">
-  <app-modal-layout [title]="'Удаление строк'" [confirmButtonText]="'Удалить'" [confirmAction]="onConfirm.bind(this)"
-                    [cancelAction]="onCancel.bind(this)">
+  <app-modal-layout [cancelAction]="onCancel.bind(this)" [confirmAction]="onConfirm.bind(this)" [confirmButtonText]="'Удалить'"
+                    [title]="'Удаление строк'">
     <p class="confirm-delete-dialog__message">Удалить выбранные строки ({{ data.count }})?</p>
   </app-modal-layout>
 </div>

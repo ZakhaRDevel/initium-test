@@ -5,18 +5,18 @@ import { ErrorComponent } from './pages/error/error.component';
 import { RecordsComponent } from './pages/records/records.component';
 
 export const routes: Routes = [
-    {
-      path: '',
-      component: PagesComponent,
-      children: [
-        {
-          path: '',
-          component: RecordsComponent,
-          resolve: {
-            records: recordsResolver
-          }
+  {
+    path: '',
+    component: PagesComponent,
+    children: [
+      {
+        path: '',
+        component: RecordsComponent,
+        resolve: {
+          records: recordsResolver
         }
-      ]
-    },
+      }
+    ]
+  },
   { path: 'error', component: ErrorComponent }
 ];

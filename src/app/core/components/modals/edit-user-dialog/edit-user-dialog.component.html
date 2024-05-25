@@ -1,11 +1,11 @@
 <div class="edit-user-dialog">
   <app-modal-layout
+    [cancelAction]="onCancel.bind(this)"
+    [confirmAction]="onConfirm.bind(this)"
+    [confirmButtonText]="'Сохранить'" [isFormValid]="formGroup.valid"
     [title]="'Редактирование'"
-    [confirmButtonText]="'Сохранить'"
-    [confirmAction]="onConfirm.bind(this)" [cancelAction]="onCancel.bind(this)"
-    [isFormValid]="formGroup.valid"
   >
-    <form class="edit-user-dialog__form" [formGroup]="formGroup">
+    <form [formGroup]="formGroup" class="edit-user-dialog__form">
       <app-input
         [control]="control('name')"
         label="Имя"
