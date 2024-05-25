@@ -5,11 +5,23 @@
     [confirmAction]="onConfirm.bind(this)" [cancelAction]="onCancel.bind(this)"
     [isFormValid]="formGroup.valid"
   >
-    <form [formGroup]="formGroup">
-      <app-input [control]="control('name')" />
-      <app-input [control]="control('surname')" />
-      <app-input [control]="control('email')" />
-      <app-input [control]="control('phone')" />
+    <form class="edit-user-dialog__form" [formGroup]="formGroup">
+      <app-input
+        [control]="control('name')"
+        label="Имя"
+      />
+      <app-input
+        [control]="control('surname')"
+        label="Фамилия"
+      />
+      <app-input
+        [control]="control('email')"
+        label="E-mail"
+      />
+      <app-input
+        [control]="control('phone')"
+        label="Телефон"
+      />
     </form>
   </app-modal-layout>
 </div>

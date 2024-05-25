@@ -3,7 +3,7 @@
     <ng-content></ng-content>
   </div>
 
-  <div class="errors" *ngIf="errors.length && showErrors">
+  <div class="errors" *ngIf="errors.length && showErrors" @fadeInEnter>
     <div class="error">
       {{ errors[0] | errorReplace }}
     </div>
