@@ -20,7 +20,6 @@ export class CreateUserDialogComponent extends Form {
   private dialogRef = inject(MatDialogRef<CreateUserDialogComponent>);
   private fb = inject(FormBuilder);
   formGroup: FormGroup = this.fb.group({
-    id: [this.generateUniqueId()],
     name: ['', [Validators.required, Validators.min(2)]],
     surname: ['', [Validators.required, Validators.min(2)]],
     email: ['', [Validators.required, Validators.email]],
@@ -44,9 +43,5 @@ export class CreateUserDialogComponent extends Form {
   override onRequestSuccess(value: any) {
     super.onRequestSuccess(value);
     this.dialogRef.close(value);
-  }
-
-  generateUniqueId(): number {
-    return Date.now();
   }
 }
