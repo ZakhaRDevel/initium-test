@@ -1,4 +1,4 @@
-import { Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RecordModel } from '../../../models/record.model';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
@@ -8,6 +8,12 @@ import { CreateUserDialogComponent } from '../../modals/create-user-dialog/creat
 import { EditUserDialogComponent } from '../../modals/edit-user-dialog/edit-user-dialog.component';
 import { IconComponent } from '../../ui/icon/icon.component';
 import { InputCheckboxComponent } from '../../inputs/input-checkbox/input-checkbox.component';
+
+interface Column {
+  field: string;
+  label: string;
+  align?: 'start' | 'center' | 'end';
+}
 
 @Component({
   selector: 'app-record-table',
@@ -23,14 +29,19 @@ import { InputCheckboxComponent } from '../../inputs/input-checkbox/input-checkb
 })
 export class RecordTableComponent {
   @Input() records: RecordModel[] = [];
-  @Output() addRecord = new EventEmitter<void>();
-  @Output() deleteRecords = new EventEmitter<RecordModel[]>();
   private recordService = inject(RecordService);
   private dialog = inject(MatDialog);
   sortBy: string = '';
   sortOrder: string = '';
   selectedRecords: RecordModel[] = [];
   allSelected: boolean = false;
+
+  columns: Column[] = [
+    { field: 'name', label: 'Имя' },
+    { field: 'surname', label: 'Фамилия' },
+    { field: 'email', label: 'E-mail', align: 'end' },
+    { field: 'phone', label: 'Телефон', align: 'end' }
+  ];
 
   getHeaderCheckboxState(): 'unchecked' | 'checked' | 'indeterminate' {
     if (this.allSelected) {

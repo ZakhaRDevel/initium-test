@@ -24,82 +24,24 @@
           ></app-input-checkbox>
         </div>
         <button
+          *ngFor="let column of columns"
           class="table-cell"
-          (click)="onSort('name')"
+          [ngClass]="{ 'end': column?.align === 'end' }"
+          (click)="onSort(column.field)"
         >
-          Имя
+          {{ column.label }}
           <div class="table-cell__triangles">
             <div
               class="top"
-              [class.active]="sortBy === 'name' && sortOrder === 'desc'"
+              [class.active]="sortBy === column.field && sortOrder === 'desc'"
             >
-              <app-icon src="assets/img/icons/triangle.svg" />
+              <app-icon src="assets/img/icons/triangle.svg"></app-icon>
             </div>
             <div
               class="bottom"
-              [class.active]="sortBy === 'name' && sortOrder === 'asc'"
+              [class.active]="sortBy === column.field && sortOrder === 'asc'"
             >
-              <app-icon src="assets/img/icons/triangle.svg" />
-            </div>
-          </div>
-        </button>
-        <button
-          class="table-cell"
-          (click)="onSort('surname')"
-        >
-          Фамилия
-          <div class="table-cell__triangles">
-            <div
-              class="top"
-              [class.active]="sortBy === 'surname' && sortOrder === 'desc'"
-            >
-              <app-icon src="assets/img/icons/triangle.svg" />
-            </div>
-            <div
-              class="bottom"
-              [class.active]="sortBy === 'surname' && sortOrder === 'asc'"
-            >
-              <app-icon src="assets/img/icons/triangle.svg" />
-            </div>
-          </div>
-        </button>
-        <button
-          class="table-cell end"
-          (click)="onSort('email')"
-        >
-          E-mail
-          <div class="table-cell__triangles">
-            <div
-              class="top"
-              [class.active]="sortBy === 'email' && sortOrder === 'desc'"
-            >
-              <app-icon src="assets/img/icons/triangle.svg" />
-            </div>
-            <div
-              class="bottom"
-              [class.active]="sortBy === 'email' && sortOrder === 'asc'"
-            >
-              <app-icon src="assets/img/icons/triangle.svg" />
-            </div>
-          </div>
-        </button>
-        <button
-          class="table-cell end"
-          (click)="onSort('phone')"
-        >
-          Телефон
-          <div class="table-cell__triangles">
-            <div
-              class="top"
-              [class.active]="sortBy === 'phone' && sortOrder === 'desc'"
-            >
-              <app-icon src="assets/img/icons/triangle.svg" />
-            </div>
-            <div
-              class="bottom"
-              [class.active]="sortBy === 'phone' && sortOrder === 'asc'"
-            >
-              <app-icon src="assets/img/icons/triangle.svg" />
+              <app-icon src="assets/img/icons/triangle.svg"></app-icon>
             </div>
           </div>
         </button>

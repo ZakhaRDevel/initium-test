@@ -2,19 +2,17 @@
 
 @mixin customScrollGray() {
   &::-webkit-scrollbar {
-    width: 4px;
+    width: 12px;
   }
-
+  //
   &::-webkit-scrollbar-track {
     background: transparent;
   }
 
   &::-webkit-scrollbar-thumb {
-    background: #D7E1ED;
-    border-radius: 4px;
-  }
-
-  &::-webkit-scrollbar-thumb:hover {
-    background: #90abc2;
+    background-clip: padding-box;
+    border: 4px solid transparent;
+    background-color: #D7E1ED;
+    border-radius: 8px;
   }
 }
