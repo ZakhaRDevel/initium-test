@@ -4,23 +4,24 @@
     [withError]="withError"
     [showErrors]="showError"
   >
-    <div class="input__wrapper">
+    <div class="input__wrapper error"
+         [class.focused]="inputFocus"
+         [class.filled]="!inputFocus && !!control.value"
+         [class.error]="withError || errors.length"
+    >
       <input
         #input
-        [id]="id"
         class="control-input"
         [formControl]="control"
         autocomplete="off"
         [class.disabled]="disabled"
-        [class.error]="withError || errors.length"
         [disabled]="disabled"
         [readonly]="readonly"
-        [placeholder]="placeholder"
         [type]="type"
-        (change)="onChange()"
+        (focus)="onFocus()"
+        (blur)="onBlur()"
       />
-
-      <label [for]="id" class="label">{{ label }}</label>
+      <label class="label">{{ label }}</label>
     </div>
   </app-form-control>
 </div>
