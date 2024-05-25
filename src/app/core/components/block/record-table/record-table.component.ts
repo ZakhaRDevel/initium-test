@@ -1,15 +1,13 @@
 import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RecordModel } from '../../../models/record.model';
-import { MatTableModule } from '@angular/material/table';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatIconModule } from '@angular/material/icon';
-import { RecordService } from '../../../services/record.service';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { RecordService } from '../../../services/record.service';
 import { ConfirmDeleteDialogComponent } from '../../modals/confirm-delete-dialog/confirm-delete-dialog.component';
 import { CreateUserDialogComponent } from '../../modals/create-user-dialog/create-user-dialog.component';
 import { EditUserDialogComponent } from '../../modals/edit-user-dialog/edit-user-dialog.component';
+import { IconComponent } from '../../ui/icon/icon.component';
+import { InputCheckboxComponent } from '../../inputs/input-checkbox/input-checkbox.component';
 
 @Component({
   selector: 'app-record-table',
@@ -18,14 +16,13 @@ import { EditUserDialogComponent } from '../../modals/edit-user-dialog/edit-user
   standalone: true,
   imports: [
     CommonModule,
-    MatTableModule,
-    MatButtonModule,
-    MatCheckboxModule,
-    MatIconModule,
-    MatDialogModule
+    MatDialogModule,
+    IconComponent,
+    InputCheckboxComponent
   ]
 })
 export class RecordTableComponent {
+  @Input() title: string;
   @Input() records: RecordModel[] = [];
   @Output() addRecord = new EventEmitter<void>();
   @Output() deleteRecords = new EventEmitter<RecordModel[]>();
@@ -33,15 +30,18 @@ export class RecordTableComponent {
   private dialog = inject(MatDialog);
   sortBy: string = '';
   sortOrder: string = '';
-  displayedColumns: string[] = [
-    'select',
-    'name',
-    'surname',
-    'email',
-    'phone'
-  ];
   selectedRecords: RecordModel[] = [];
   allSelected: boolean = false;
+
+  getHeaderCheckboxState(): 'unchecked' | 'checked' | 'indeterminate' {
+    if (this.allSelected) {
+      return 'checked';
+    } else if (this.selectedRecords.length > 0) {
+      return 'indeterminate';
+    } else {
+      return 'unchecked';
+    }
+  }
 
   toggleAllSelection(): void {
     this.allSelected = !this.allSelected;
@@ -62,7 +62,6 @@ export class RecordTableComponent {
     this.allSelected = this.selectedRecords.length === this.records.length;
   }
 
-
   onDeleteRecords(): void {
     if (this.selectedRecords.length === 0) {
       console.warn('Нет выбранных записей для удаления.');
@@ -74,7 +73,8 @@ export class RecordTableComponent {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result?.success) {
+      console.log(result);
+      if (result) {
         const ids = this.selectedRecords.map(record => record.id);
         this.recordService.deleteRecords(ids).subscribe(() => {
           this.fetchRecords();
@@ -89,7 +89,7 @@ export class RecordTableComponent {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result?.success) {
+      if (result) {
         this.fetchRecords();
       }
     });
@@ -107,12 +107,11 @@ export class RecordTableComponent {
   openCreateUserDialog() {
     const dialogRef = this.dialog.open(CreateUserDialogComponent);
 
-    dialogRef.afterClosed().subscribe(result=> {
+    dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        console.log(result);
         this.fetchRecords();
       }
-    })
+    });
   }
 
   onSort(column: string): void {
