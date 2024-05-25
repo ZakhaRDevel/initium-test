@@ -75,12 +75,23 @@
       width: 100%;
       @include customScrollGray();
 
+
       .table-row{
+
+        &.selected {
+          background-color: #E9F0FF;
+        }
+
         @media (hover:hover) {
           &:hover{
             background-color: #f6f9ff;
           }
         }
+
+        &.selected {
+          background-color: #E9F0FF;
+        }
+
       }
     }
 
@@ -94,10 +105,6 @@
 
       &:last-child {
         border-bottom: none;
-      }
-
-      &.selected {
-        background-color: #E9F0FF;
       }
     }
 
