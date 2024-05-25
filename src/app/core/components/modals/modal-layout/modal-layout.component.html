@@ -3,7 +3,9 @@
     <h3 class="modal-layout__title">{{ title }}</h3>
   </div>
   <div class="modal-layout__content">
+    <mat-dialog-content>
       <ng-content></ng-content>
+    </mat-dialog-content>
   </div>
   <div class="modal-layout__actions">
     <button class="_btn default transparent" (click)="onCancel()">Отмена</button>

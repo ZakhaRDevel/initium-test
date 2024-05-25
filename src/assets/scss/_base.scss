@@ -79,6 +79,7 @@ button {
   font-size: var(--font-size-base);
   font-weight: var(--font-weight-base);
   line-height: var(--line-height-base);
+  text-align: left;
   color: #2E2E2E;
 }
 
@@ -138,4 +139,5 @@ input {
 .mat-mdc-dialog-surface {
   background-color: #fff !important;
   border-radius: 20px !important;
+  box-shadow: none !important;
 }

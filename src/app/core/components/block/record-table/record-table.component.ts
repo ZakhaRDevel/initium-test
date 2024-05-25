@@ -22,7 +22,6 @@ import { InputCheckboxComponent } from '../../inputs/input-checkbox/input-checkb
   ]
 })
 export class RecordTableComponent {
-  @Input() title: string;
   @Input() records: RecordModel[] = [];
   @Output() addRecord = new EventEmitter<void>();
   @Output() deleteRecords = new EventEmitter<RecordModel[]>();
