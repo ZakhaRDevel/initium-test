@@ -20,7 +20,7 @@ export const recordsResolver: ResolveFn<RecordModel[]> = (route, state) => {
       return EMPTY;
     }),
     finalize(() => {
-      loadingService.hide();
+      // loadingService.hide();
     })
   );
 };

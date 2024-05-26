@@ -1,8 +1,8 @@
-mat-progress-bar {
-  position: fixed;
+.mat-mdc-progress-bar {
+  position: fixed !important;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 100% !important;
   z-index: 1000;
 
   .mdc-linear-progress__buffer {
