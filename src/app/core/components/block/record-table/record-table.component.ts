@@ -10,6 +10,7 @@ import { InputCheckboxComponent } from '../../inputs/input-checkbox/input-checkb
 import { IconAddComponent } from '../../../svg/icon-add/icon-add.component';
 import { IconDeleteComponent } from '../../../svg/icon-delete/icon-delete.component';
 import { IconTriangleComponent } from '../../../svg/icon-triangle/icon-triangle.component';
+import { LoadingService } from '../../../services/loading.service';
 
 interface Column {
   field: string;
@@ -45,6 +46,7 @@ export class RecordTableComponent {
   ];
   private recordService = inject(RecordService);
   private dialog = inject(MatDialog);
+  private loadingService = inject(LoadingService);
 
   getHeaderCheckboxState(): 'unchecked' | 'checked' | 'indeterminate' {
     if (this.allSelected) {
@@ -88,8 +90,12 @@ export class RecordTableComponent {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         const ids = this.selectedRecords.map(record => record.id);
+        this.loadingService.show();
         this.recordService.deleteRecords(ids).subscribe(() => {
           this.fetchRecords();
+          this.loadingService.hide();
+        }, () => {
+          this.loadingService.hide();
         });
       }
     });
@@ -109,10 +115,14 @@ export class RecordTableComponent {
 
   fetchRecords(): void {
     const filters = { sortBy: this.sortBy, order: this.sortOrder };
+    this.loadingService.show();
     this.recordService.getRecords(filters).subscribe(data => {
       this.records = data;
       this.selectedRecords = [];
       this.allSelected = false;
+      this.loadingService.hide();
+    }, () => {
+      this.loadingService.hide();
     });
   }
 

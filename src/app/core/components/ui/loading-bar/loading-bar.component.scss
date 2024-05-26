@@ -1,0 +1,19 @@
+mat-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+
+  .mdc-linear-progress__buffer {
+    .mdc-linear-progress__buffer-bar {
+      background-color: rgba(47, 103, 213, .25);
+    }
+  }
+
+  .mdc-linear-progress__bar {
+    .mdc-linear-progress__bar-inner {
+      border-color: #2F67D5;
+    }
+  }
+}
