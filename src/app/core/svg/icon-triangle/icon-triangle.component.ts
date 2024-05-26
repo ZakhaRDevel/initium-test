@@ -6,7 +6,6 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './icon-triangle.component.svg',
-  styleUrls: ['./icon-triangle.component.scss']
 })
 export class IconTriangleComponent {
   @Input() width: number = 8;
