@@ -6,8 +6,10 @@ import { RecordService } from '../../../services/record.service';
 import { ConfirmDeleteDialogComponent } from '../../modals/confirm-delete-dialog/confirm-delete-dialog.component';
 import { CreateUserDialogComponent } from '../../modals/create-user-dialog/create-user-dialog.component';
 import { EditUserDialogComponent } from '../../modals/edit-user-dialog/edit-user-dialog.component';
-import { IconComponent } from '../../ui/icon/icon.component';
 import { InputCheckboxComponent } from '../../inputs/input-checkbox/input-checkbox.component';
+import { IconAddComponent } from '../../../svg/icon-add/icon-add.component';
+import { IconDeleteComponent } from '../../../svg/icon-delete/icon-delete.component';
+import { IconTriangleComponent } from '../../../svg/icon-triangle/icon-triangle.component';
 
 interface Column {
   field: string;
@@ -23,8 +25,10 @@ interface Column {
   imports: [
     CommonModule,
     MatDialogModule,
-    IconComponent,
-    InputCheckboxComponent
+    InputCheckboxComponent,
+    IconAddComponent,
+    IconDeleteComponent,
+    IconTriangleComponent
   ]
 })
 export class RecordTableComponent {

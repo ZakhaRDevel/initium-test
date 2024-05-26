@@ -4,14 +4,14 @@
       (click)="openCreateUserDialog()"
       class="_btn icon transparent"
     >
-      <app-icon src="assets/img/icons/add.svg"></app-icon>
+      <app-icon-add class="svg-icon" />
     </button>
     <button
       (click)="onDeleteRecords()"
       [disabled]="selectedRecords.length < 1"
       class="_btn icon transparent"
     >
-      <app-icon src="assets/img/icons/delete.svg"></app-icon>
+      <app-icon-delete class="svg-icon" />
     </button>
   </div>
   <table class="table">
@@ -35,13 +35,13 @@
               [class.active]="sortBy === column.field && sortOrder === 'desc'"
               class="top"
             >
-              <app-icon src="assets/img/icons/triangle.svg"></app-icon>
+              <app-icon-triangle class="svg-icon" />
             </div>
             <div
               [class.active]="sortBy === column.field && sortOrder === 'asc'"
               class="bottom"
             >
-              <app-icon src="assets/img/icons/triangle.svg"></app-icon>
+              <app-icon-triangle class="svg-icon" />
             </div>
           </div>
         </button>
