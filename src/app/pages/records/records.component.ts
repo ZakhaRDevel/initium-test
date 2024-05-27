@@ -1,5 +1,4 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { RecordModel } from '../../core/models/record.model';
 import { RecordTableComponent } from '../../core/components/block/record-table/record-table.component';
@@ -7,7 +6,7 @@ import { RecordTableComponent } from '../../core/components/block/record-table/r
 @Component({
   selector: 'app-records',
   standalone: true,
-  imports: [CommonModule, RecordTableComponent],
+  imports: [ RecordTableComponent],
   templateUrl: './records.component.html',
   styleUrls: ['./records.component.scss']
 })

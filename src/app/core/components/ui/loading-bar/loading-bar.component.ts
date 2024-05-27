@@ -1,12 +1,12 @@
 import { Component, inject, ViewEncapsulation } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { AsyncPipe, NgIf } from '@angular/common';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { LoadingService } from '../../../services/loading.service';
 
 @Component({
   selector: 'app-loading-bar',
   standalone: true,
-  imports: [CommonModule, MatProgressBarModule],
+  imports: [MatProgressBarModule, NgIf, AsyncPipe],
   template: `
     <mat-progress-bar *ngIf="isLoading$ | async" mode="indeterminate" color="primary"></mat-progress-bar>
   `,

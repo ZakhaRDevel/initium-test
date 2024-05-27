@@ -1,5 +1,4 @@
 import { Component, inject, Input } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { RecordModel } from '../../../models/record.model';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { RecordService } from '../../../services/record.service';
@@ -11,6 +10,7 @@ import { IconAddComponent } from '../../../svg/icon-add/icon-add.component';
 import { IconDeleteComponent } from '../../../svg/icon-delete/icon-delete.component';
 import { IconTriangleComponent } from '../../../svg/icon-triangle/icon-triangle.component';
 import { LoadingService } from '../../../services/loading.service';
+import { NgClass, NgForOf } from '@angular/common';
 
 interface Column {
   field: string;
@@ -24,12 +24,13 @@ interface Column {
   styleUrls: ['./record-table.component.scss'],
   standalone: true,
   imports: [
-    CommonModule,
     MatDialogModule,
     InputCheckboxComponent,
     IconAddComponent,
     IconDeleteComponent,
-    IconTriangleComponent
+    IconTriangleComponent,
+    NgClass,
+    NgForOf
   ]
 })
 export class RecordTableComponent {
