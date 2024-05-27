@@ -20,10 +20,10 @@ export class CreateUserDialogComponent extends Form {
   private dialogRef = inject(MatDialogRef<CreateUserDialogComponent>);
   private fb = inject(FormBuilder);
   formGroup: FormGroup = this.fb.group({
-    name: ['', [Validators.required, Validators.min(2)]],
-    surname: ['', [Validators.required, Validators.min(2)]],
-    email: ['', [Validators.required, Validators.email]],
-    phone: ['', [phoneValidator()]]
+    name: [null, [Validators.required, Validators.min(2)]],
+    surname: [null, [Validators.required, Validators.min(2)]],
+    email: [null, [Validators.required, Validators.email]],
+    phone: [null, [phoneValidator()]]
   });
   private recordService = inject(RecordService);
 
