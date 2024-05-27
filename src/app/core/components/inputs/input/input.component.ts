@@ -1,7 +1,9 @@
-import { booleanAttribute, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { booleanAttribute, Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ReactiveFormsModule, UntypedFormControl } from '@angular/forms';
 import { FormInput } from '../../../abstract/form-input.abstract';
 import { FormControlComponent } from '../form-control/form-control.component';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-input',
@@ -13,7 +15,7 @@ import { FormControlComponent } from '../form-control/form-control.component';
   ],
   styleUrls: ['./input.component.scss']
 })
-export class InputComponent extends FormInput implements OnInit {
+export class InputComponent extends FormInput implements OnInit, OnDestroy {
   @Input() withError: boolean = false;
   @Input() showError: boolean = true;
   @Input() label: string = '';
@@ -25,11 +27,17 @@ export class InputComponent extends FormInput implements OnInit {
 
   inputFocus: boolean = false;
   inputFilled: boolean = false;
+  private destroy$ = new Subject<void>();
 
   ngOnInit(): void {
-    this.control.valueChanges.subscribe((value: string) => {
+    this.control.valueChanges.pipe(takeUntil(this.destroy$)).subscribe((value: string) => {
       this.checkInputValue();
     });
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   checkInputValue(): void {

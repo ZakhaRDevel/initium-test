@@ -1,4 +1,4 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, inject, Input, OnDestroy } from '@angular/core';
 import { RecordModel } from '../../../models/record.model';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { RecordService } from '../../../services/record.service';
@@ -11,6 +11,8 @@ import { IconDeleteComponent } from '../../../svg/icon-delete/icon-delete.compon
 import { IconTriangleComponent } from '../../../svg/icon-triangle/icon-triangle.component';
 import { LoadingService } from '../../../services/loading.service';
 import { NgClass, NgForOf } from '@angular/common';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 interface Column {
   field: string;
@@ -33,7 +35,7 @@ interface Column {
     NgForOf
   ]
 })
-export class RecordTableComponent {
+export class RecordTableComponent implements OnDestroy {
   @Input() records: RecordModel[] = [];
   sortBy: string = '';
   sortOrder: string = '';
@@ -48,6 +50,12 @@ export class RecordTableComponent {
   private recordService = inject(RecordService);
   private dialog = inject(MatDialog);
   private loadingService = inject(LoadingService);
+  private destroy$ = new Subject<void>();
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
 
   getHeaderCheckboxState(): 'unchecked' | 'checked' | 'indeterminate' {
     if (this.allSelected) {
@@ -88,11 +96,11 @@ export class RecordTableComponent {
       data: { count: this.selectedRecords.length }
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().pipe(takeUntil(this.destroy$)).subscribe(result => {
       if (result) {
         const ids = this.selectedRecords.map(record => record.id);
         this.loadingService.show();
-        this.recordService.deleteRecords(ids).subscribe(() => {
+        this.recordService.deleteRecords(ids).pipe(takeUntil(this.destroy$)).subscribe(() => {
           this.fetchRecords();
           this.loadingService.hide();
         }, () => {
@@ -107,7 +115,7 @@ export class RecordTableComponent {
       data: record
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().pipe(takeUntil(this.destroy$)).subscribe(result => {
       if (result) {
         this.fetchRecords();
       }
@@ -117,7 +125,7 @@ export class RecordTableComponent {
   fetchRecords(): void {
     const filters = { sortBy: this.sortBy, order: this.sortOrder };
     this.loadingService.show();
-    this.recordService.getRecords(filters).subscribe(data => {
+    this.recordService.getRecords(filters).pipe(takeUntil(this.destroy$)).subscribe(data => {
       this.records = data;
       this.selectedRecords = [];
       this.allSelected = false;
@@ -130,7 +138,7 @@ export class RecordTableComponent {
   openCreateUserDialog() {
     const dialogRef = this.dialog.open(CreateUserDialogComponent);
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().pipe(takeUntil(this.destroy$)).subscribe(result => {
       if (result) {
         this.fetchRecords();
       }
