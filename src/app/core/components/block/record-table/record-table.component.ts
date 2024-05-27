@@ -33,7 +33,7 @@ interface Column {
     IconTriangleComponent,
     NgClass,
     NgForOf,
-    SortByPipe // Импортируем pipe
+    SortByPipe
   ]
 })
 export class RecordTableComponent implements OnDestroy {
@@ -126,9 +126,8 @@ export class RecordTableComponent implements OnDestroy {
   }
 
   fetchRecords(): void {
-    const filters = { sortBy: this.sortBy, order: this.sortOrder };
     this.loadingService.show();
-    this.recordService.getRecords(filters).pipe(takeUntil(this.destroy$)).subscribe(data => {
+    this.recordService.getRecords().pipe(takeUntil(this.destroy$)).subscribe(data => {
       this.records = data;
       this.selectedRecords = [];
       this.allSelected = false;
