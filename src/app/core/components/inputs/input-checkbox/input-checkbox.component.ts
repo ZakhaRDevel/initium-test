@@ -2,6 +2,8 @@ import { booleanAttribute, Component, EventEmitter, Input, Output } from '@angul
 import { FormControlComponent } from '../form-control/form-control.component';
 import { ReactiveFormsModule, UntypedFormControl } from '@angular/forms';
 
+type State = 'unchecked' | 'checked' | 'indeterminate';
+
 @Component({
   selector: 'app-input-checkbox',
   standalone: true,
@@ -14,8 +16,8 @@ export class InputCheckboxComponent {
   @Input() showError: boolean = true;
   @Input({ transform: booleanAttribute }) disabled: boolean = false;
   @Input() control: UntypedFormControl | any = new UntypedFormControl();
-  @Input() state: 'unchecked' | 'checked' | 'indeterminate' = 'unchecked';
-  @Output() stateChange = new EventEmitter<'unchecked' | 'checked' | 'indeterminate'>();
+  @Input() state: State = 'unchecked';
+  @Output() stateChange = new EventEmitter<State>();
 
   toggleState() {
     if (this.state === 'unchecked') {

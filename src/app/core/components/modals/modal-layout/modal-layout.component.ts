@@ -16,11 +16,9 @@ export class ModalLayoutComponent {
   @Input() confirmButtonText: string = 'OK';
   @Input() isFormValid: boolean = true;
 
-  @Input() confirmAction: () => void = () => {
-  };
+  @Input() confirmAction!: () => void;
 
-  @Input() cancelAction: () => void = () => {
-  };
+  @Input() cancelAction!: () => void;
 
   onCancel(): void {
     this.cancelAction();
