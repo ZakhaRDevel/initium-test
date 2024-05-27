@@ -1,4 +1,4 @@
-import { Component, Inject, inject } from '@angular/core';
+import { Component, Inject, inject, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { InputComponent } from '../../inputs/input/input.component';
 import { ModalLayoutComponent } from '../modal-layout/modal-layout.component';
@@ -11,15 +11,16 @@ import { Form } from '../../../abstract/form.abstract';
 import { RecordModel } from '../../../models/record.model';
 
 @Component({
-  selector: 'app-edit-user-dialog',
+  selector: 'app-user-dialog',
   standalone: true,
   imports: [CommonModule, InputComponent, ModalLayoutComponent, ReactiveFormsModule],
-  templateUrl: './edit-user-dialog.component.html',
-  styleUrls: ['./edit-user-dialog.component.scss']
+  templateUrl: './user-dialog.component.html',
+  styleUrls: ['./user-dialog.component.scss']
 })
-export class EditUserDialogComponent extends Form {
+export class UserDialogComponent extends Form {
+  @Input() isEdit: boolean = false;
   formGroup: FormGroup;
-  private dialogRef = inject(MatDialogRef<EditUserDialogComponent>);
+  private dialogRef = inject(MatDialogRef<UserDialogComponent>);
   private fb = inject(FormBuilder);
   private recordService = inject(RecordService);
 
@@ -28,11 +29,11 @@ export class EditUserDialogComponent extends Form {
   ) {
     super();
     this.formGroup = this.fb.group({
-      id: [this.record.id],
-      name: [this.record.name, [Validators.required, Validators.min(2)]],
-      surname: [this.record.surname, [Validators.required, Validators.min(2)]],
-      email: [this.record.email, [Validators.required, Validators.email]],
-      phone: [this.record.phone, [phoneValidator()]]
+      id: [this.record?.id || null],
+      name: [this.record?.name || '', [Validators.required, Validators.min(2)]],
+      surname: [this.record?.surname || '', [Validators.required, Validators.min(2)]],
+      email: [this.record?.email || '', [Validators.required, Validators.email]],
+      phone: [this.record?.phone || '', [phoneValidator()]]
     });
   }
 
@@ -44,10 +45,13 @@ export class EditUserDialogComponent extends Form {
     this.dialogRef.close();
   }
 
-
   prepareRequest(): Observable<any> {
     const data = this.formGroup.getRawValue();
-    return this.recordService.updateRecord(data);
+    if (this.isEdit) {
+      return this.recordService.updateRecord(data);
+    } else {
+      return this.recordService.addRecord(data);
+    }
   }
 
   override onRequestSuccess(value: any) {

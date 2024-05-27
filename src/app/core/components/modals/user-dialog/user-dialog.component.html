@@ -1,11 +1,11 @@
-<div class="edit-user-dialog">
+<div class="user-dialog">
   <app-modal-layout
     [cancelAction]="onCancel.bind(this)"
     [confirmAction]="onConfirm.bind(this)"
     [confirmButtonText]="'Сохранить'" [isFormValid]="formGroup.valid"
-    [title]="'Редактирование'"
+    [title]="'Новый клиент'"
   >
-    <form [formGroup]="formGroup" class="edit-user-dialog__form">
+    <form [formGroup]="formGroup" class="user-dialog__form">
       <app-input
         [control]="control('name')"
         label="Имя"
@@ -22,6 +22,7 @@
         [control]="control('phone')"
         label="Телефон"
       />
+
     </form>
   </app-modal-layout>
 </div>

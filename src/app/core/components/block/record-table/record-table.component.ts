@@ -3,8 +3,7 @@ import { RecordModel } from '../../../models/record.model';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { RecordService } from '../../../services/record.service';
 import { ConfirmDeleteDialogComponent } from '../../modals/confirm-delete-dialog/confirm-delete-dialog.component';
-import { CreateUserDialogComponent } from '../../modals/create-user-dialog/create-user-dialog.component';
-import { EditUserDialogComponent } from '../../modals/edit-user-dialog/edit-user-dialog.component';
+import { UserDialogComponent } from '../../modals/user-dialog/user-dialog.component'; // Импортируйте новый компонент
 import { InputCheckboxComponent } from '../../inputs/input-checkbox/input-checkbox.component';
 import { IconAddComponent } from '../../../svg/icon-add/icon-add.component';
 import { IconDeleteComponent } from '../../../svg/icon-delete/icon-delete.component';
@@ -113,9 +112,11 @@ export class RecordTableComponent implements OnDestroy {
   }
 
   onEditRecord(record: RecordModel): void {
-    const dialogRef = this.dialog.open(EditUserDialogComponent, {
-      data: record
+    const dialogRef = this.dialog.open(UserDialogComponent, {
+      data: { ...record },
     });
+
+    dialogRef.componentInstance.isEdit = true;
 
     dialogRef.afterClosed().pipe(takeUntil(this.destroy$)).subscribe(result => {
       if (result) {
@@ -137,8 +138,12 @@ export class RecordTableComponent implements OnDestroy {
     });
   }
 
-  openCreateUserDialog() {
-    const dialogRef = this.dialog.open(CreateUserDialogComponent);
+  openCreateUserDialog(): void {
+    const dialogRef = this.dialog.open(UserDialogComponent, {
+      data: {} as RecordModel,
+    });
+
+    dialogRef.componentInstance.isEdit = false;
 
     dialogRef.afterClosed().pipe(takeUntil(this.destroy$)).subscribe(result => {
       if (result) {
