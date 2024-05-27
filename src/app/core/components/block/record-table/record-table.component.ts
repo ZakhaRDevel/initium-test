@@ -13,6 +13,7 @@ import { LoadingService } from '../../../services/loading.service';
 import { NgClass, NgForOf } from '@angular/common';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { SortByPipe } from '../../../pipes/sort-by.pipe';
 
 interface Column {
   field: string;
@@ -32,13 +33,14 @@ interface Column {
     IconDeleteComponent,
     IconTriangleComponent,
     NgClass,
-    NgForOf
+    NgForOf,
+    SortByPipe // Импортируем pipe
   ]
 })
 export class RecordTableComponent implements OnDestroy {
   @Input() records: RecordModel[] = [];
   sortBy: string = '';
-  sortOrder: string = '';
+  sortOrder: 'asc' | 'desc' = 'asc';
   selectedRecords: RecordModel[] = [];
   allSelected: boolean = false;
   columns: Column[] = [
@@ -152,6 +154,5 @@ export class RecordTableComponent implements OnDestroy {
       this.sortBy = column;
       this.sortOrder = 'asc';
     }
-    this.fetchRecords();
   }
 }

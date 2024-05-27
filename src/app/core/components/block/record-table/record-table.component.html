@@ -1,63 +1,39 @@
 <div class="record-table">
   <div class="record-table__header">
-    <button
-      (click)="openCreateUserDialog()"
-      class="_btn icon transparent"
-    >
-      <app-icon-add class="svg-icon" />
+    <button (click)="openCreateUserDialog()" class="_btn icon transparent">
+      <app-icon-add class="svg-icon"></app-icon-add>
     </button>
-    <button
-      (click)="onDeleteRecords()"
-      [disabled]="selectedRecords.length < 1"
-      class="_btn icon transparent"
-    >
-      <app-icon-delete class="svg-icon" />
+    <button (click)="onDeleteRecords()" [disabled]="selectedRecords.length < 1" class="_btn icon transparent">
+      <app-icon-delete class="svg-icon"></app-icon-delete>
     </button>
   </div>
   <table class="table">
     <div class="table-thead">
       <div class="table-row">
         <div class="table-cell">
-          <app-input-checkbox
-            (stateChange)="toggleAllSelection()"
-            [state]="getHeaderCheckboxState()"
-          ></app-input-checkbox>
+          <app-input-checkbox (stateChange)="toggleAllSelection()"
+                              [state]="getHeaderCheckboxState()"></app-input-checkbox>
         </div>
-        <button
-          (click)="onSort(column.field)"
-          *ngFor="let column of columns"
-          [ngClass]="{ 'end': column?.align === 'end' }"
-          class="table-cell"
-        >
+        <button *ngFor="let column of columns" (click)="onSort(column.field)"
+                [ngClass]="{ 'end': column?.align === 'end' }" class="table-cell">
           {{ column.label }}
           <div class="table-cell__triangles">
-            <div
-              [class.active]="sortBy === column.field && sortOrder === 'desc'"
-              class="top"
-            >
-              <app-icon-triangle class="svg-icon" />
+            <div [class.active]="sortBy === column.field && sortOrder === 'desc'" class="top">
+              <app-icon-triangle class="svg-icon"></app-icon-triangle>
             </div>
-            <div
-              [class.active]="sortBy === column.field && sortOrder === 'asc'"
-              class="bottom"
-            >
-              <app-icon-triangle class="svg-icon" />
+            <div [class.active]="sortBy === column.field && sortOrder === 'asc'" class="bottom">
+              <app-icon-triangle class="svg-icon"></app-icon-triangle>
             </div>
           </div>
         </button>
       </div>
     </div>
     <div class="table-tbody">
-      <div
-        *ngFor="let record of records"
-        [class.selected]="selectedRecords.includes(record)"
-        class="table-row"
-      >
+      <div *ngFor="let record of records | sortBy:sortBy:sortOrder" [class.selected]="selectedRecords.includes(record)"
+           class="table-row">
         <div class="table-cell">
-          <app-input-checkbox
-            (stateChange)="onToggleSelection(record)"
-            [state]="selectedRecords.includes(record) ? 'checked' : 'unchecked'"
-          ></app-input-checkbox>
+          <app-input-checkbox (stateChange)="onToggleSelection(record)"
+                              [state]="selectedRecords.includes(record) ? 'checked' : 'unchecked'"></app-input-checkbox>
         </div>
         <button (click)="onEditRecord(record)" class="table-cell btn">{{ record.name }}</button>
         <div class="table-cell">{{ record.surname }}</div>
