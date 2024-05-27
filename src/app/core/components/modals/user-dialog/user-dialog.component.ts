@@ -30,10 +30,10 @@ export class UserDialogComponent extends Form {
     super();
     this.formGroup = this.fb.group({
       id: [this.record?.id || null],
-      name: [this.record?.name || '', [Validators.required, Validators.min(2)]],
-      surname: [this.record?.surname || '', [Validators.required, Validators.min(2)]],
-      email: [this.record?.email || '', [Validators.required, Validators.email]],
-      phone: [this.record?.phone || '', [phoneValidator()]]
+      name: [this.record?.name || null, [Validators.required, Validators.min(2)]],
+      surname: [this.record?.surname || null, [Validators.required, Validators.min(2)]],
+      email: [this.record?.email || null, [Validators.required, Validators.email]],
+      phone: [this.record?.phone || null, [phoneValidator()]]
     });
   }
 
