@@ -1,44 +1,20 @@
 //--------------------------------Roboto
 
-@font-face {
-  font-family: 'Roboto';
-  font-weight: 100;
-  font-style: normal;
-  src: url('../../assets/fonts/roboto/thin.ttf') format('opentype');
-}
+$roboto-fonts: (
+  100: 'thin',
+  300: 'light',
+  400: 'regular',
+  500: 'medium',
+  700: 'bold',
+  900: 'black'
+);
 
-@font-face {
-  font-family: 'Roboto';
-  font-weight: 300;
-  font-style: normal;
-  src: url('../../assets/fonts/roboto/light.ttf') format('opentype');
-}
-
-@font-face {
-  font-family: 'Roboto';
-  font-weight: 400;
-  font-style: normal;
-  src: url('../../assets/fonts/roboto/regular.ttf') format('opentype');
-}
-
-@font-face {
-  font-family: 'Roboto';
-  font-weight: 500;
-  font-style: normal;
-  src: url('../../assets/fonts/roboto/medium.ttf') format('opentype');
-}
-
-@font-face {
-  font-family: 'Roboto';
-  font-weight: 700;
-  font-style: normal;
-  src: url('../../assets/fonts/roboto/bold.ttf') format('opentype');
-}
-
-@font-face {
-  font-family: 'Roboto';
-  font-weight: 900;
-  font-style: normal;
-  src: url('../../assets/fonts/roboto/black.ttf') format('opentype');
+@each $weight, $name in $roboto-fonts {
+  @font-face {
+    font-family: 'Roboto';
+    font-weight: #{$weight};
+    font-style: normal;
+    src: url('../../assets/fonts/roboto/#{$name}.ttf') format('opentype');
+  }
 }
 
